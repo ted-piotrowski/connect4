@@ -10,6 +10,8 @@ Server may hibernate during periods of low use. Please be patient while it boots
 
 ## Get started
 
+Tested with Node 9.x
+
 ```
 yarn install
 yarn start
