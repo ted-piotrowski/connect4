@@ -46,33 +46,39 @@ function GameServer(io) {
         // game participant left. inform their opponent and clean up the game
         // if the game was finished, persist it to disk
         let currentGame = games[socket.id];
-        let opponentSocket = currentGame.getOpponent(socket.id);
-        currentGame.setOpponentDisconnected();
-        currentGame.broadcast();
+        if (currentGame) {
+          let opponentSocket = currentGame.getOpponent(socket.id);
 
-        // persist the game if it is finished
-        if (currentGame.isFinished()) {
-          let board = currentGame.serializeBoard();
-          fs.appendFile('database.txt', `${board}\n`, function (err) {
-            if (err) {
-              return console.log('Failed to persist game to disk');
-            }
-            console.log('Game saved to disk', board);
-          })
+          // persist the game if it is finished
+          if (currentGame.isFinished()) {
+            let board = currentGame.serializeBoard();
+            fs.appendFile('database.txt', `${board}\n`, function (err) {
+              if (err) {
+                return console.log('Failed to persist game to disk');
+              }
+              console.log('Game saved to disk', board);
+            })
+          }
+
+          currentGame.setOpponentDisconnected();
+          currentGame.broadcast();
+
+          currentGame.destroy();
+          delete games[socket.id];
+          delete games[opponentSocket];
+          delete currentGame;
         }
-
-        currentGame.destroy();
-        delete games[socket.id];
-        delete games[opponentSocket];
-        delete currentGame;
       }
     });
 
     /***** incoming move *****/
     socket.on(MOVE_EVENT, function (column) {
       console.log('player moved', column, socket.id);
-      games[socket.id].move(socket.id, parseInt(column));
-      games[socket.id].broadcast();
+      let currentGame = games[socket.id];
+      if (currentGame) {
+        currentGame.move(socket.id, parseInt(column));
+        currentGame.broadcast();
+      }
     });
 
     /***** incoming message *****/

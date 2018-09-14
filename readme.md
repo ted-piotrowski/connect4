@@ -32,6 +32,7 @@ straightforward to use a database table with a character field in its place.
 ## Future improvements
 
 - Improve UI!!
+- Better mobile experience
 - Persist to DB so app is stateless and can scale horizontally
 - Write React client tests
 - Remove PUG templates. Serve client from CDN.
