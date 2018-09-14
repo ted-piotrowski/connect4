@@ -31,13 +31,13 @@ class NetworkGame extends Game {
   broadcast() {
     let data = this.getGameStateForPlayer(this.player1Socket.id);
     if (this.opponentDisconnected) {
-      data.status = 'Opponent left';
+      data.status = 'Opponent left. Refresh the page to start a new game.';
     }
     this.player1Socket.emit(UPDATE_EVENT, data);
 
     data = this.getGameStateForPlayer(this.player2Socket.id);
     if (this.opponentDisconnected) {
-      data.status = 'Opponent left';
+      data.status = 'Opponent left. Refresh the page to start a new game.';
     }
     this.player2Socket.emit(UPDATE_EVENT, data);
   }

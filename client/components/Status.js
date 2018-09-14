@@ -1,7 +1,8 @@
 import React from 'react';
 
 const style = {
-  padding: '10px 0'
+  padding: '10px 0',
+  fontSize: '1.5rem'
 }
 
 class Status extends React.Component {

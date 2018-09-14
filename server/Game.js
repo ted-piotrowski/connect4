@@ -70,12 +70,12 @@ class Game {
     if (this.gameOver) {
       status = 'Game over. ';
       if (this.winner === player) {
-        status += 'You win!';
+        status += 'You win! Refresh the page to play again.';
       } else {
-        status += 'You lose. :(';
+        status += 'You lose. Refresh the page to play again.';
       }
     } else if (this.gameTied) {
-      status = 'Game tied';
+      status = 'Game over. You tied. Refresh the page to play again.';
     }
     return {
       status: status,

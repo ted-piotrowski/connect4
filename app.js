@@ -11,7 +11,7 @@ var app = express();
 // set up socket listeners
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var Sockets = require('./server/Sockets');
+var GameServer = require('./server/GameServer');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +42,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Start Connect4 socket listeners
-Sockets.listen(io);
+GameServer(io);
 
 module.exports = {
   app: app,
