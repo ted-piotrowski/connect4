@@ -2,7 +2,11 @@
 
 ![Game screenshot](https://raw.githubusercontent.com/ted-piotrowski/connect4/master/screenshot.png)
 
-Play now on Glitch [https://conscious-thistle.glitch.me/](https://conscious-thistle.glitch.me/)
+## Play now
+
+[https://conscious-thistle.glitch.me/](https://conscious-thistle.glitch.me/)
+
+Server may hibernate during periods of low use. Please be patient while it boots.
 
 ## Get started
 
