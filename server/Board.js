@@ -61,8 +61,11 @@ class Board {
    * @returns {boolean} true if board has a winning result
    */
   checkForWin(column) {
+    // already know column of last piece played, now lets find the row
+    // i.e. the highest piece in the played column
     let row;
     for (row = 0; this.board[row][column] === EMPTY && row < BOARD_HEIGHT; row++) { }
+
     return this._checkForHorizontalWin(row, column) || 
       this._checkForVerticalWin(row, column) || 
       this._checkForDiagonalWin(row, column);
